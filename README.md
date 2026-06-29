@@ -2,7 +2,7 @@
 
 ## Live URL
 
-https://courageous-pixie-503ea5.netlify.app/#contact
+https://courageous-pixie-503ea5.netlify.app
 
 ## Screenshot
 
