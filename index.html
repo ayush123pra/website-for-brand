@@ -1,0 +1,377 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prodesk IT - Human-Centric Digital Solutions">
+    <title>Prodesk IT | Organic Digital Growth</title>
+    <style>
+        /* 
+           PHASE 1 & 2: CORE STYLES & THEME VARIABLES
+            */
+        :root {
+            /* Warm, Human-Centric Light Theme */
+            --bg-base: #FDFBF7;
+            --text-main: #2D3748;
+            --text-muted: #4A5568;
+            --accent-color: #E36414; /* Warm Burnt Orange */
+            --accent-hover: #C0530F;
+            --surface-color: #FFFFFF;
+            --glass-bg: rgba(253, 251, 247, 0.85);
+            --border-subtle: rgba(45, 55, 72, 0.1);
+            --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode {
+            /* Deep, Rich Dark Theme */
+            --bg-base: #1A202C;
+            --text-main: #F7FAFC;
+            --text-muted: #A0AEC0;
+            --accent-color: #F6AD55; 
+            --accent-hover: #FBD38D;
+            --surface-color: #2D3748;
+            --glass-bg: rgba(26, 32, 44, 0.85);
+            --border-subtle: rgba(247, 250, 252, 0.1);
+            --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            line-height: 1.6;
+        }
+
+        /* 
+           NAVIGATION (FLEXBOX + GLASSMORPHISM)
+            */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 6%;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background-color: var(--glass-bg);
+            backdrop-filter: blur(12px); /* Phase 3 Glassmorphism trick */
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .brand-mark {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .brand-mark span {
+            color: var(--accent-color);
+        }
+
+        .nav-cluster {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-cluster a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-cluster a:hover {
+            color: var(--accent-color);
+        }
+
+        .action-tray {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-switch {
+            background: none;
+            border: 2px solid var(--border-subtle);
+            border-radius: 50px;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-switch:hover {
+            border-color: var(--accent-color);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /*
+           HERO SECTION (FLEXBOX)
+            */
+        .hero-banner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 75vh;
+            padding: 0 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-banner h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-banner p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 80%;
+        }
+
+        .cta-primary {
+            background-color: var(--accent-color);
+            color: #fff !important; /* Force white text even in dark mode */
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(227, 100, 20, 0.3);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
+            display: inline-block;
+        }
+
+        .cta-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-5px) scale(1.02); /* Organic micro-interaction */
+        }
+
+        /* 
+           SERVICES / VALUE PROPS (CSS GRID)
+           */
+        .value-props {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .prop-card {
+            background-color: var(--surface-color);
+            padding: 3rem 2rem;
+            border-radius: 24px 8px 24px 8px; /* Asymmetrical "Humanoid" Shape */
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s ease;
+        }
+
+        .prop-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .prop-card p {
+            color: var(--text-muted);
+        }
+
+        .prop-card:hover {
+            transform: translateY(-8px) rotate(1deg); /* Playful, organic hover state */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        /* 
+           FOOTER
+            */
+        .site-footer {
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            margin-top: 4rem;
+        }
+
+        .site-footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 0.8rem;
+            font-weight: 500;
+        }
+
+        /* 
+           MOBILE RESPONSIVENESS
+            */
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-cluster {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--surface-color);
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            .nav-cluster.is-open {
+                max-height: 300px;
+            }
+            .nav-cluster li {
+                width: 100%;
+                text-align: center;
+                border-top: 1px solid var(--border-subtle);
+            }
+            .nav-cluster a {
+                display: block;
+                padding: 1.2rem;
+            }
+            .hero-banner p {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header" id="navbar">
+        <a href="#" class="brand-mark">Prodesk<span>IT</span></a>
+        
+        <ul class="nav-cluster" id="nav-menu">
+            <li><a href="#home">Philosophy</a></li>
+            <li><a href="#services">Capabilities</a></li>
+            <li><a href="#contact">Collaborate</a></li>
+        </ul>
+
+        <div class="action-tray">
+            <button class="theme-switch" id="theme-btn" aria-label="Toggle Dark Mode">💡 Light</button>
+            <button class="mobile-toggle" id="mobile-btn" aria-label="Open Menu">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-banner" id="home">
+            <h1>Human-Centric Design for Your Corporate Brand.</h1>
+            <p>We blend pixel-perfect frontend architecture with empathetic UX strategies to build digital experiences that actually resonate with your users.</p>
+            <a href="#contact" class="cta-primary">Start a Conversation</a>
+        </section>
+
+        <section class="value-props" id="services">
+            <h2 class="section-title">Core Capabilities</h2>
+            <div class="offerings-grid">
+                
+                <div class="prop-card">
+                    <h3>Organic SEO</h3>
+                    <p>Moving beyond keyword stuffing. We build data-driven, context-rich search strategies that connect your platform with humans seeking genuine solutions.</p>
+                </div>
+                
+                <div class="prop-card">
+                    <h3>Responsive Architecture</h3>
+                    <p>Clean DOM structures utilizing CSS Grid and Flexbox. Your application will scale flawlessly from desktop command centers to mobile devices.</p>
+                </div>
+                
+                <div class="prop-card">
+                    <h3>Empathetic Marketing</h3>
+                    <p>Targeted campaigns designed to respect user attention while maximizing conversion. We turn casual visitors into dedicated community members.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+        <p>&copy; 2026 Prodesk IT. Built with raw code and careful thought.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
+            <a href="#">Email Us</a>
+        </div>
+    </footer>
+
+    <script>
+        // Phase 2: Theme Controller Logic
+        const themeBtn = document.getElementById('theme-btn');
+        const bodyElement = document.body;
+        
+        // Check local storage for persistent theme preference
+        const currentTheme = localStorage.getItem('prodesk_theme');
+        if (currentTheme === 'dark') {
+            bodyElement.classList.add('dark-mode');
+            themeBtn.innerHTML = '🌙 Dark';
+        }
+
+        // Toggle Theme Event
+        themeBtn.addEventListener('click', () => {
+            bodyElement.classList.toggle('dark-mode');
+            
+            if (bodyElement.classList.contains('dark-mode')) {
+                themeBtn.innerHTML = '🌙 Dark';
+                localStorage.setItem('prodesk_theme', 'dark');
+            } else {
+                themeBtn.innerHTML = '💡 Light';
+                localStorage.setItem('prodesk_theme', 'light');
+            }
+        });
+
+        // Phase 1: Mobile Navigation Logic
+        const mobileBtn = document.getElementById('mobile-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('is-open');
+            // Toggle hamburger to an 'X' visually
+            if (navMenu.classList.contains('is-open')) {
+                mobileBtn.innerHTML = '✕';
+            } else {
+                mobileBtn.innerHTML = '☰';
+            }
+        });
+    </script>
+</body>
+</html>
